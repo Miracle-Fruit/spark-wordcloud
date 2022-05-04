@@ -1,6 +1,6 @@
 tasks:
   - name: Docker Compose
-    init: Tdocker-compose up -f webapp/docker-compose.yml
+    init: docker-compose up -f webapp/docker-compose.yml
 
 ports:
   - port: 8000
