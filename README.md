@@ -11,7 +11,8 @@ Generate word clouds from large text files and determine term and document frequ
 ## Documentation
 
 --insert text--
---insert draw io--
+
+![Webapp Architecture](webapp-architecture.svg)
 
 You can also view or download the [PDF Documentation]().
 

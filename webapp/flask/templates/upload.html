@@ -21,11 +21,12 @@
             <label for="formFileLg" class="form-label">Please upload your txt files here:</label>
             <input class="form-control form-control-lg" id="formFileLg" type="file" name="files[]" accept=".txt"multiple>
             <button type="submit" value="Upload" name="file_upload_button" class="btn btn-dark m-2">Upload File(s)</button>
-            <button type="submit" class="btn btn-dark m-2">Delete File(s)</button>
+            <button type="submit" value="Remove" name="rm_uploads" class="btn btn-dark m-2">Remove File(s)</button>
         </div>
         <h2>Step 2: Select Operation</h2>
         <div>
             <button type="submit" name="start_bj" class="btn btn-dark m-2">Run Batch Job</button>
+            <button class="btn btn-dark m-2" onClick="window.location.reload();">Refresh Page</button>
             {% if not os.path.exists('./wordclouds/global.png') and bj_started %}
                 <img src="{{ url_for('static', filename='loading.gif') }}" width="50"/>
             {% endif %}

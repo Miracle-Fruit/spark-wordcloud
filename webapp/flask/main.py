@@ -44,7 +44,6 @@ engine.execute('''
         COLLATE utf8_bin;
         ''')
 
-
 ALLOWED_EXTENSIONS = {'txt'}
 try:
     shutil.rmtree('uploads')
@@ -79,10 +78,8 @@ def make_tree(path):
                 tree['children'].append(dict(name=name))
     return tree
 
-
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 def toogle_wc(filename):
     global show_wc
@@ -91,24 +88,20 @@ def toogle_wc(filename):
     else:
         show_wc = filename
 
-
 def drop_table_entry(filename):
     engine.execute('''
     DELETE FROM tf WHERE name="{}";
         '''.format(filename))
 
-
 @app.context_processor
 def handle_context():
     return dict(os=os)
-
 
 @app.route('/')
 def index():
     return render_template('upload.html', tree=make_tree('./uploads'),
      wc_image=wc_dict, current_wc = show_wc,
      bj_started=bj_started)
-
 
 @app.route('/', methods=['POST'])
 def handle_post():
@@ -150,4 +143,9 @@ def handle_post():
         thread.daemon = True
         thread.start()
         bj_started = True
+    elif 'rm_uploads' in request.form:
+        for f in os.listdir("./uploads"):
+            if not f.endswith(".txt"):
+                continue
+            os.remove(os.path.join(mydir, f))
     return redirect(url_for('index'))
