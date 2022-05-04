@@ -1,6 +1,6 @@
 tasks:
   - name: Docker Compose
-    init: docker-compose -f webapp/docker-compose.yml up
+    init: docker-compose -f webapp/docker-compose.yml up --scale spark-worker=3
 
 ports:
   - port: 8000
