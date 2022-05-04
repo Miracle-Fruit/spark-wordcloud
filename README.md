@@ -4,6 +4,8 @@ Generate word clouds from large text files and determine term and document frequ
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Miracle-Fruit/spark-wordcloud)
 
+![Webapp Preview](preview.png)
+
 ## Demo Video
 
 --insert video--
