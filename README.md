@@ -23,3 +23,8 @@ You can easily develope this application by opening up GitPod (see above) and ha
 ```bash
 docker-compose -f webapp/docker-compose.yml up
 ```
+
+Worker can be scaled with:
+```bash
+docker-compose -f webapp/docker-compose.yml up --scale spark-worker=2
+```
