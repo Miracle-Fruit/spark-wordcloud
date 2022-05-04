@@ -26,13 +26,18 @@
         <h2>Step 2: Select Operation</h2>
         <div>
             <button type="submit" name="start_bj" class="btn btn-dark m-2">Run Batch Job</button>
+            {% if not os.path.exists('./wordclouds/global.png') and bj_started %}
+                <img src="{{ url_for('static', filename='loading.gif') }}" width="50"/>
+            {% endif %}
+
+
+            {% if os.path.exists('./wordclouds/global.png') %} 
             <ul class="list-group bg-transparent">
               <li class="list-group-item bg-transparent">
-            {% if os.path.exists('./wordclouds/global.png') %} 
-              <img src="{{ url_for('static', filename='global.png') }}"/>
-            {% endif %}
-          </li>
-          </ul>
+                <img src="{{ url_for('static', filename='global.png') }}"/>
+              </li>
+            </ul>
+          {% endif %}
         </div>
         <h2>Step 3: Check your Output</h2>
     </form>
@@ -42,12 +47,19 @@
         {%- for item in tree.children recursive %}
         <li class="list-group-item bg-transparent">
           <form method="post" action="/">
-            <h2>Filename: {{ item.name }}</h2>
+            <div class="d-inline-block">
+              <h2>Filename: {{ item.name }}</h2>
+            </div>
+              {% if not os.path.exists('./wordclouds/' + os.path.splitext(item.name)[0] + ".png") %}
+                <img src="{{ url_for('static', filename='loading.gif') }}" width="50"/>
+              {% endif %}
+            <div class="d-block">
             <button type="submit" value="{{ item.name }}" name="delete_file_button" class="btn btn-dark m-2">Delete</button>
             <button type="submit" value="{{ item.name }}" name="toogle_tc_button" class="btn btn-dark m-2">Toggle Tag Cloud</button>
+          </div>
           </form>
-          {% if item.name in wc_image and current_wc == item.name %} 
-          <img src="{{ url_for('static', filename=wc_image[item.name]) }}" alt="{{ wc_image[item.name] }}" />
+          {% if os.path.exists('./wordclouds/' + os.path.splitext(item.name)[0] + ".png") and current_wc == item.name %} 
+            <img src="{{ url_for('static', filename=wc_image[item.name]) }}" alt="{{ wc_image[item.name] }}" />
           {% endif %}
         </li>
         {%- endfor %}

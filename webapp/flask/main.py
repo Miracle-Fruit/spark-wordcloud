@@ -57,10 +57,13 @@ if not os.path.exists('uploads'):
 if not os.path.exists('wordclouds'):
     os.makedirs('wordclouds')
 
+shutil.copyfile('loading.gif', './wordclouds/loading.gif')
+
 app.config['UPLOAD_FOLDER'] = './uploads'
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024 #Allow up to 64 megabyte uploads
 wc_dict = {}
 show_wc = ""
+bj_started = False
 
 def make_tree(path):
     tree = dict(name=os.path.basename(path), children=[])
@@ -102,13 +105,14 @@ def handle_context():
 
 @app.route('/')
 def index():
-    return render_template('upload.html', tree=make_tree('./uploads'), wc_image=wc_dict, current_wc = show_wc)
-
+    return render_template('upload.html', tree=make_tree('./uploads'),
+     wc_image=wc_dict, current_wc = show_wc,
+     bj_started=bj_started)
 
 
 @app.route('/', methods=['POST'])
 def handle_post():
-    global show_wc
+    global show_wc, bj_started
     if 'delete_file_button' in request.form:
         try:
             filename = list(request.form.values())[0]
@@ -140,7 +144,10 @@ def handle_post():
                 toogle_wc(filename)
         return redirect(url_for('index'))
     elif 'start_bj' in request.form:
+        if os.path.exists("./wordclouds/global.png"):
+            os.remove("./wordclouds/global.png")
         thread = Thread(target=batch)
         thread.daemon = True
         thread.start()
+        bj_started = True
     return redirect(url_for('index'))
