@@ -30,11 +30,11 @@ The data generated from the Spark Jobs are saved in MariaDB. MariaDB has three t
 - df (stores the document frequency for all words)
 - tfidf (stores the TFIDF value for each document)
 
-Due to its setup Spark distributed the workload between the available worker nodes (please read below on how to scale them).
+Due to its setup, Spark distributed the workload between the available worker nodes (please read below on how to scale them).
 
 ### Architecture
 
-The following vector image is a visualization of the above description:
+The following image is a visualization of the description above:
 
 ![Webapp Architecture](webapp-architecture.png)
 
@@ -45,14 +45,14 @@ The following vector image is a visualization of the above description:
 * Queries in SQL are sometimes not so easy 
 * Bootstrap elements center -> frontend was annoying
 * Setup with database and JDBC Driver -> link driver by spark-submit and in docker-image
-* Docker setup with all components -> try and error until its works
+* Docker setup with all components -> try and error until it works
 * Spark Jobs depends strongly on systems hardware  e. g. 4 MB .txt-file  PC ->  11-20sec, laptop -> 2-3min
 
 You can also view or download the documentation as a [PDF Document](documentation.pdf).
 
 ## Development
 
-You can easily develope this application by opening up GitPod (see above) and have the whole environemt up and running. Alternatively you can clone the repo and develope locally - simply run the following commands from the roor of the repository:
+You can easily develope this application by opening up GitPod (see above) and have the whole environemt up and running. Alternatively you can clone the repo and develope locally - simply run the following commands from the root of the repository:
 
 ```bash
 docker-compose -f webapp/docker-compose.yml up
