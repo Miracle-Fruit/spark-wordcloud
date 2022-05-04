@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style type="text/css">
+        body { background: #ffc107 !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+     </style>
+    <title>BDEA Word Count</title>
+  </head>
+  <body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <h1>Spark Word Cloud</h1>
+    <p>This web application allows you to upload txt files to create word clouds based on term and document frequency</p>
+    <form method="POST" action="/" enctype="multipart/form-data">
+        <h2>Step 1: Select & Upload File(s)</h2>
+        <div>
+            <label for="formFileLg" class="form-label">Please upload your txt files here:</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="files[]" accept=".txt"multiple>
+            <button type="submit" value="Upload" name="file_upload_button" class="btn btn-dark m-2">Upload File(s)</button>
+            <button type="submit" class="btn btn-dark m-2">Delete File(s)</button>
+        </div>
+        <h2>Step 2: Select Operation</h2>
+        <div>
+            <button type="submit" name="start_bj" class="btn btn-dark m-2">Run Batch Job</button>
+            <ul class="list-group bg-transparent">
+              <li class="list-group-item bg-transparent">
+            {% if os.path.exists('./wordclouds/global.png') %} 
+              <img src="{{ url_for('static', filename='global.png') }}"/>
+            {% endif %}
+          </li>
+          </ul>
+        </div>
+        <h2>Step 3: Check your Output</h2>
+    </form>
+    <div>
+    <div>
+      <ul class="list-group bg-transparent">
+        {%- for item in tree.children recursive %}
+        <li class="list-group-item bg-transparent">
+          <form method="post" action="/">
+            <h2>Filename: {{ item.name }}</h2>
+            <button type="submit" value="{{ item.name }}" name="delete_file_button" class="btn btn-dark m-2">Delete</button>
+            <button type="submit" value="{{ item.name }}" name="toogle_tc_button" class="btn btn-dark m-2">Toggle Tag Cloud</button>
+          </form>
+          {% if item.name in wc_image and current_wc == item.name %} 
+          <img src="{{ url_for('static', filename=wc_image[item.name]) }}" alt="{{ wc_image[item.name] }}" />
+          {% endif %}
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+    </div>
+  </body>
+</html>

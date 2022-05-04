@@ -1,0 +1,14 @@
+FROM bitnami/spark
+
+USER root
+
+WORKDIR /opt/application/spark/
+
+ENV VIRTUAL_ENV=/opt/bitnami/airflow/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH = "$VIRTUAL_ENV/bin:$PATH"
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+RUN curl https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar --output /opt/bitnami/spark/jars/mysql-connector-java-8.0.29.jar
+
+
