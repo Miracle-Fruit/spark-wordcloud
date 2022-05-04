@@ -1,3 +1,9 @@
 tasks:
-  - init: Docker Compose
-    command: docker-compose up
+  - init: Terminal 1
+    command: docker-compose up -f webapp/docker-compose.yml
+
+ports:
+  - port: 8000
+    onOpen: open-browser
+  - port: 8080
+    onOpen: open-browser
