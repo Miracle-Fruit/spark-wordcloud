@@ -36,7 +36,7 @@ Due to its setup Spark distributed the workload between the available worker nod
 
 The following vector image is a visualization of the above description:
 
-![Webapp Architecture](webapp-architecture.svg)
+![Webapp Architecture](webapp-architecture.png)
 
 ### Challenges & Problems
 
