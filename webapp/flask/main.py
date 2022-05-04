@@ -144,7 +144,8 @@ def handle_post():
         thread.start()
         bj_started = True
     elif 'rm_uploads' in request.form:
-        for f in os.listdir("./uploads"):
+        mydir = "./uploads"
+        for f in os.listdir(mydir):
             if not f.endswith(".txt"):
                 continue
             os.remove(os.path.join(mydir, f))
