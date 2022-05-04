@@ -144,9 +144,14 @@ def handle_post():
         thread.start()
         bj_started = True
     elif 'rm_uploads' in request.form:
-        mydir = "./uploads"
-        for f in os.listdir(mydir):
+        u_dir = "./uploads"
+        wc_dir = "./wordclouds"
+        for f in os.listdir(u_dir):
             if not f.endswith(".txt"):
                 continue
-            os.remove(os.path.join(mydir, f))
+            os.remove(os.path.join(u_dir, f))
+        for f in os.listdir(wc_dir):
+            if not f.endswith(".png"):
+                continue
+            os.remove(os.path.join(wc_dir, f))
     return redirect(url_for('index'))

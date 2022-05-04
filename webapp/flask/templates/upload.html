@@ -26,26 +26,31 @@
         <h2>Step 2: Select Operation</h2>
         <div>
             <button type="submit" name="start_bj" class="btn btn-dark m-2">Run Batch Job</button>
-            <button class="btn btn-dark m-2" onClick="window.location.reload();">Refresh Page</button>
-            <button type="submit" value="Remove" name="rm_uploads" class="btn btn-dark m-2">Remove File(s)</button> 
+            <button class="btn btn-dark m-2" onClick="window.location.reload();">Manual Refresh</button>
+            <button type="submit" value="Remove" name="rm_uploads" class="btn btn-dark m-2">Remove all File(s)</button> 
         </div>
         <h2>Step 3: Check your Output</h2>
     </form>
     <div>
+      
       <div>
         {% if not os.path.exists('./wordclouds/global.png') and bj_started %}
-                  <img src="{{ url_for('static', filename='loading.gif') }}" width="50"/>
-              {% endif %}
-              {% if os.path.exists('./wordclouds/global.png') %} 
-              <ul class="list-group bg-transparent">
-                <li class="list-group-item bg-transparent">
-                  <img src="{{ url_for('static', filename='global.png') }}"/>
-                </li>
-              </ul>
-            {% endif %}
+        <h3>Global Term/Document Frequency</h3>
+        <img src="{{ url_for('static', filename='loading.gif') }}" width="50"/>
+        {% endif %}
+        {% if os.path.exists('./wordclouds/global.png') %}
+        <h3>Global Term/Document Frequency</h3>
+        <ul class="list-group bg-transparent">
+          <li class="list-group-item bg-transparent">
+            <img src="{{ url_for('static', filename='global.png') }}"/>
+          </li>
+        </ul>
+        {% endif %}
       </div>
+      
       <div>
         <ul class="list-group bg-transparent">
+          <h3>Term Frequency per File</h3>
           {%- for item in tree.children recursive %}
           <li class="list-group-item bg-transparent">
             <form method="post" action="/">
