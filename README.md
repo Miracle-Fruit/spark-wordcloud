@@ -28,3 +28,12 @@ Worker can be scaled with:
 ```bash
 docker-compose -f webapp/docker-compose.yml up --scale spark-worker=2
 ```
+
+## Sources
+
+### Text File Sources
+
+* [The Grand Inquisitor by Fyodor Dostoyevsky](https://www.gutenberg.org/ebooks/8578)
+* [The Brothers Karamazov by Fyodor Dostoyevsky](https://www.gutenberg.org/ebooks/28054)
+* [The Gambler by Fyodor Dostoyevsky](https://www.gutenberg.org/ebooks/2197)
+* [The Idiot by Fyodor Dostoyevsky](https://www.gutenberg.org/ebooks/2638)
