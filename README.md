@@ -8,7 +8,7 @@ Generate word clouds from large text files and determine term and document frequ
 
 ## Demo Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TN-JgBMii6w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![YouTube Demo Video](https://img.youtube.com/vi/TN-JgBMii6w/0.jpg)](https://youtu.be/TN-JgBMii6w)
 
 ## Documentation
 
