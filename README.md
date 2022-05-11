@@ -10,7 +10,7 @@ Generate word clouds from large text files and determine term and document frequ
 
 [![YouTube Demo Video](https://img.youtube.com/vi/TN-JgBMii6w/0.jpg)](https://youtu.be/TN-JgBMii6w)
 
-[Google Slide Presentation](https://docs.google.com/presentation/d/1KiSGVSb00VvVOgkPGbEf3NFmZzIF0X74XDTL4_0UaSE/edit?usp=sharing)
+[Open the Presentation PDF](presentation.pdf)
 
 ## Documentation
 
